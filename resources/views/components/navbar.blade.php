@@ -7,6 +7,9 @@
         <a class=" p-2 rounded-md" href="{{ route('home') }}">Home</a>
         <a class=" p-2 rounded-md" href="{{ route('events') }}">Events</a>
         <a class=" p-2 rounded-md" href="{{ route('transaction') }}">Transactions</a>
+        @can('manage-users')
+            <a class=" p-2 rounded-md" href="{{ route('users') }}">Users</a>
+        @endcan
         @if (auth()->check())
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
