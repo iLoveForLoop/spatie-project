@@ -16,6 +16,7 @@ class UserController extends Controller
     }
 
     public function updatePermissions(Request $request, User $user) {
+
         $request->validate([
             'permissions' => 'array',
             'permissions.*' => 'string|exists:permissions,name'

@@ -15,7 +15,7 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::get('/events', function () {
-    return view('events.index');
+    return view('events.index')->with('success', 'logged in successfully');
 })->name('events')->middleware(['auth', 'can:view-events']);
 
 Route::get('/transaction', function () {

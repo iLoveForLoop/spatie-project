@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="w-screen h-screen flex flex-col justify-start items-start p-7">
-        <div class="w-full flex justify-between mb-5">
+        <div class="w-full flex justify-between mb-5 items-center h-20">
             <h1 class="text-4xl font-bold uppercase text-red-950">users page</h1>
             @if (session('success'))
                 <div
-                    class="flex items-center justify-between p-4 mb-4 text-green-800 bg-green-100 border border-green-300 rounded-lg ">
+                    class="flex items-center justify-between p-4 text-green-800 bg-green-100 border border-green-300 rounded-lg flash-message">
                     <div class="flex items-center space-x-2">
                         <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -42,23 +42,23 @@
                                 <form action="{{ route('update-permissions', $user->id) }}" method="POST"
                                     class="space-y-2 flex justify-between">
                                     @csrf
-                                    @foreach ($user->roles as $role)
-                                        <div class="mb-2">
-                                            <p class="text-blue-500 font-semibold">{{ $role->name }}</p>
-                                            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-1">
-                                                @foreach ($permissions as $permission)
-                                                    <label
-                                                        class="flex items-center space-x-2 bg-gray-100 p-2 rounded-md shadow-sm">
-                                                        <input type="checkbox" name="permissions[]"
-                                                            value="{{ $permission->name }}"
-                                                            class="form-checkbox text-blue-500 h-5 w-5"
-                                                            @if ($user->hasPermissionTo($permission->name)) checked @endif>
-                                                        <span class="text-gray-800">{{ $permission->name }}</span>
-                                                    </label>
-                                                @endforeach
-                                            </div>
+                                    {{-- @foreach ($user->roles as $role) --}}
+                                    <div class="mb-2">
+                                        {{-- <p class="text-blue-500 font-semibold">{{ $role->name }}</p> --}}
+                                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-1">
+                                            @foreach ($permissions as $permission)
+                                                <label
+                                                    class="flex items-center space-x-2 bg-gray-100 p-2 rounded-md shadow-sm">
+                                                    <input type="checkbox" name="permissions[]"
+                                                        value="{{ $permission->name }}"
+                                                        class="form-checkbox text-blue-500 h-5 w-5"
+                                                        @if ($user->hasPermissionTo($permission->name)) checked @endif>
+                                                    <span class="text-gray-800">{{ $permission->name }}</span>
+                                                </label>
+                                            @endforeach
                                         </div>
-                                    @endforeach
+                                    </div>
+                                    {{-- @endforeach --}}
                                     <div class="flex justify-center items-center h-100" style="margin-top: 0 !important;">
                                         <button type="submit"
                                             class=" bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition">
@@ -76,4 +76,27 @@
 
         </div>
     </div>
+
+
+    <style>
+        .flash-message {
+            animation: fadeOut 3s ease-in-out forwards;
+            opacity: 1;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
+    </style>
 @endsection

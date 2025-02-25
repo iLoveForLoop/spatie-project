@@ -40,8 +40,11 @@ class RolesAndPermissionsSeeder extends Seeder
         ]);
 
 
-        $user1->assignRole('admin');
-        $user2->assignRole('user');
+        // $user1->assignRole('admin');
+        // $user2->assignRole('user');
+
+        $user1->givePermissionTo($permissions);
+        $user2->givePermissionTo('view-events');
 
     }
 }
