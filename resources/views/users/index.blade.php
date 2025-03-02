@@ -24,8 +24,8 @@
 
         <div class="w-full">
 
-            <table class="min-w-full border border-gray-300 rounded-lg shadow-md">
-                <thead class="bg-gray-700 text-white">
+            <table class="min-w-full border border-gray-300 shadow-md text-green-500">
+                <thead class="bg-gray-700">
                     <tr>
                         <th class="px-6 py-3 text-left">Username</th>
                         <th class="px-6 py-3 text-left">Email</th>
@@ -33,11 +33,11 @@
                     </tr>
                 </thead>
 
-                <tbody class="divide-y divide-gray-200 bg-white">
+                <tbody class="divide-y divide-gray-200 bg-gray-700 ">
                     @foreach ($users as $user)
-                        <tr class="hover:bg-gray-100 transition-all">
-                            <td class="px-6 py-3 font-semibold text-gray-800">{{ $user->name }}</td>
-                            <td class="px-6 py-3 text-gray-700">{{ $user->email }}</td>
+                        <tr class="hover:bg-gray-800 transition-all">
+                            <td class="px-6 py-3 font-semibold text-green-500">{{ $user->name }}</td>
+                            <td class="px-6 py-3 text-green-500">{{ $user->email }}</td>
                             <td class="px-6 py-3">
                                 <form action="{{ route('update-permissions', $user->id) }}" method="POST"
                                     class="space-y-2 flex justify-between">
@@ -48,12 +48,20 @@
                                         <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-1">
                                             @foreach ($permissions as $permission)
                                                 <label
-                                                    class="flex items-center space-x-2 bg-gray-100 p-2 rounded-md shadow-sm">
+                                                    class="flex items-center space-x-2 bg-gray-800 p-2 rounded-md shadow-sm border border-gray-700">
                                                     <input type="checkbox" name="permissions[]"
                                                         value="{{ $permission->name }}"
                                                         class="form-checkbox text-blue-500 h-5 w-5"
                                                         @if ($user->hasPermissionTo($permission->name)) checked @endif>
-                                                    <span class="text-gray-800">{{ $permission->name }}</span>
+                                                    {{-- <div
+                                                        class="w-5 h-5 border-2 border-gray-400 rounded-md peer-checked:bg-green-500  flex items-center justify-center">
+                                                        <svg class="w-4 h-4  hidden peer-checked:block" viewBox="0 0 24 24"
+                                                            fill="none" stroke="currentColor" stroke-width="3"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                                        </svg>
+                                                    </div> --}}
+                                                    <span class="text-green-500">{{ $permission->name }}</span>
                                                 </label>
                                             @endforeach
                                         </div>
@@ -61,7 +69,7 @@
                                     {{-- @endforeach --}}
                                     <div class="flex justify-center items-center h-100" style="margin-top: 0 !important;">
                                         <button type="submit"
-                                            class=" bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition">
+                                            class=" bg-green-500 text-gray-700 font-semibold px-4 py-2 rounded-full hover:bg-green-700 transition">
                                             Update Permissions
                                         </button>
                                     </div>

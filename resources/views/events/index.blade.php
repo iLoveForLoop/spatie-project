@@ -3,8 +3,8 @@
 @section('content')
     <div class="w-screen h-screen flex justify-center items-center relative">
         @if (isset($success))
-            <div class="bg-blue-400 text-white absolute top-5 right-5 p-4 rounded-md flash-message uppercase">
-                <p>Welcome {{ auth()->user()->name }}</p>
+            <div class="bg-green-500 text-white absolute top-2 p-4 rounded flash-message uppercase" style="width: 98%">
+                <h1 class="text-center font-semibold">Welcome {{ auth()->user()->name }}</h1>
             </div>
         @endif
 
